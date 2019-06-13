@@ -9,13 +9,26 @@ import {Task} from './models/task.model';
 export class AppComponent {
   title: string = 'Angular';
   currentFocus: string = 'Angular Homework';
-  currentTime = new Date();
-  month: number = this.currentTime.getMonth() + 1;
-  day: number = this.currentTime.getDate();
-  year: number = this.currentTime.getFullYear();
-  tasks: Task[] = [
-    new Task('Finish weekend Angular homework for Epicodus course', 'HIGH'),
-    new Task('Begin brainstorming possible JavaScript group projects', 'LOW'),
-    new Task('Add README file to last few Angular repos on GitHub', 'MEDIUM')
-  ];
+    currentTime = new Date();
+    month: number = this.currentTime.getMonth() + 1;
+    day: number = this.currentTime.getDate();
+    year: number = this.currentTime.getFullYear();
+    selectedTask = null;
+
+    masterTaskList: Task[] = [
+      new Task('Finish weekend Angular homework for Epicodus course', 'HIGH'),
+      new Task('Begin brainstorming possible JavaScript group projects', 'MEDIUM'),
+      new Task('Add README file to last few Angular repos on GitHub', 'MEDIUM')
+    ];
+
+    editTask(clickedTask) {
+      this.selectedTask = clickedTask;
+    }
+
+    finishedEditing() {
+      this.selectedTask = null;
+    }
+    addTask(newTask: Task) {
+    this.masterTaskList.push(newTask);
+  }
 }
